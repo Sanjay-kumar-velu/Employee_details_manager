@@ -117,7 +117,7 @@ func main() {
 
 	var err error
 	client, err = mongo.Connect(ctx, options.Client().ApplyURI(
-		"mongodb+srv://martinmystery885:Martin123@cluster0.lbvhff5.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0",
+		"mongodb+srv://martinmystery885:******@cluster0.lbvhff5.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0",
 	))
 	if err != nil {
 		log.Fatal(err)
@@ -153,3 +153,4 @@ func main() {
 	log.Println("Server running at http://localhost:3030")
 	log.Fatal(http.ListenAndServe(":3030", nil))
 }
+
