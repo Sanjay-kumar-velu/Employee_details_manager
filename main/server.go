@@ -131,8 +131,16 @@ func main() {
 
 	initIDCounter()
 
-	// Serve API first
-	http.HandleFunc("/api/employees", employeesHandler)
+	// Serve API with CORS support for development
+	http.HandleFunc("/api/employees", func(w http.ResponseWriter, r *http.Request) { // Add CORS headers
+		w.Header().Set("Access-Control-Allow-Origin", "*")
+		w.Header().Set("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS")
+		w.Header().Set("Access-Control-Allow-Headers", "Content-Type") // Handle preflight OPTIONS requests
+		if r.Method == http.MethodOptions {
+			return
+		} // Call existing handler
+		employeesHandler(w, r)
+	})
 
 	// Serve static assets
 	fs := http.FileServer(http.Dir("./frontend/dist"))

@@ -3,5 +3,9 @@ import vue from '@vitejs/plugin-vue'
 
 export default defineConfig({
   plugins: [vue()],
-  base: "./"  // important: makes asset paths relative
+  server: {
+    proxy: {
+      '/api': 'http://localhost:3030' // Forward /api calls to backend
+    }
+  }
 })
