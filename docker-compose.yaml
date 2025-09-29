@@ -1,0 +1,22 @@
+version: '3.8'
+
+services:
+  frontend:
+    image: frontend:latest
+    container_name: frontend-app
+    restart: always
+    ports:
+      - "5173:5173"
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    depends_on:
+      - backend
+  backend:
+    image: backend:latest
+    container_name: backend-api
+    restart: always
+    ports:
+      - "3030:3030"
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+ 
